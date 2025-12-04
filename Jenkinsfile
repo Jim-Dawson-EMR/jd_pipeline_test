@@ -16,8 +16,8 @@ pipeline {
         }*/
         stage("Execute"){
             steps {
-                def psout = powershell ( returnStdout: true, script:'.\\script.ps1').trim()
-                env.psout = ${psout}
+                def psout = powershell ( returnStdout: true, script:'.\\script.ps1')
+                //env.psout = ${psout}
             }
         }
     }
