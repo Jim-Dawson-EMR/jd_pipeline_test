@@ -14,7 +14,7 @@ pipeline {
         stage("Execute"){
             steps {
                 powershell 'dir'
-                powershell '.\script.ps1'
+                powershell (script:'.\\script.ps1')
             }
         }
     }
