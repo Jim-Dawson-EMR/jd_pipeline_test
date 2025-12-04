@@ -13,7 +13,8 @@ pipeline {
         }*/
         stage("Execute"){
             steps {
-                powershell 'dir'
+                //powershell 'dir'
+                powershell 'script.ps1'
             }
         }
     }
