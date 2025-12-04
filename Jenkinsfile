@@ -16,7 +16,7 @@ pipeline {
         }*/
         stage("Execute"){
             steps {
-                psout = powershell ( returnStdout: true, script:'.\\script.ps1')
+                env.psout = powershell ( returnStdout: true, script:'.\\script.ps1') 
                 //env.psout = ${psout}
             }
         }
