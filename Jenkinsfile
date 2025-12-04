@@ -13,15 +13,24 @@ pipeline {
         }*/
         stage("Execute"){
             steps {
-                powershell 'dir'
-                powershell (script:'.\\script.ps1')
+                def psout = powershell (script:'.\\script.ps1')
+                env:psout = psout
             }
         }
     }
     post {
         always {
-            //emailext body: 'testing body', subject: 'test', to: 'jim.dawson@emerson.com'
-            echo "done"
+            // One or more steps need to be included within each condition's block.
+            echo "$env:psout"
+
+        }
+        unsuccessful {
+                //emailext body: 'testing body', subject: 'test', to: 'jim.dawson@emerson.com'
+                echo "Failed. ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}" 
         }
     }
 }
+/*        always {
+            //emailext body: 'testing body', subject: 'test', to: 'jim.dawson@emerson.com'
+            echo "done"
+        } */
