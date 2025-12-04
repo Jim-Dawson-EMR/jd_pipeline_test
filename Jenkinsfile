@@ -9,12 +9,15 @@ pipeline {
                 git branch: 'main', 
                     url: 'https://github.com/Jim-Dawson-EMR/jd_pipeline_test.git', 
                     credentialsId: 'PAT for Jenkins-Azure-Subscription-Tagging'
+
+                    sh(script: 'echo "This is the output."', returnStdout: true).trim()
+
             }
         }*/
         stage("Execute"){
             steps {
-                def psout = powershell (script:'.\\script.ps1')
-                env.psout = psout
+                def psout = powershell (script:'.\\script.ps1' returnStdout: true).trim()
+                env.psout = ${psout}
             }
         }
     }
