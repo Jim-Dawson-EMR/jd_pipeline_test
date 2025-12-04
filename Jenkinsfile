@@ -14,7 +14,7 @@ pipeline {
         stage("Execute"){
             steps {
                 def psout = powershell (script:'.\\script.ps1')
-                env:psout = psout
+                env.psout = psout
             }
         }
     }
